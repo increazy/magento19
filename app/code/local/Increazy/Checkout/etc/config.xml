@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<config>
+   <modules>
+        <Increazy_Checkout>
+            <version>1.0.1</version>
+            <depends>
+                <Mage_Payment />
+            </depends>
+        </Increazy_Checkout>
+   </modules>
+
+
+
+
+
+   <frontend>
+        <routers>
+            <increazy_checkout>
+                <use>standard</use>
+                <args>
+                    <module>Increazy_Checkout</module>
+                    <frontName>increazy_api</frontName>
+                </args>
+            </increazy_checkout>
+        </routers>
+    </frontend>
+
+
+
+
+
+    <global>
+        <models>
+			<increazy_checkout>
+				<class>Increazy_Checkout_Model</class>
+			</increazy_checkout>
+		</models>
+
+        <helpers>
+            <increazy_checkout>
+                <class>Increazy_Checkout_Helper</class>
+            </increazy_checkout>
+
+            <increazy_config>
+                <class>Increazy_Checkout</class>
+            </increazy_config>
+        </helpers>
+
+        <blocks>
+			<increazy_checkout>
+				<class>Increazy_Checkout_Block</class>
+			</increazy_checkout>
+		</blocks>
+
+        <resources>
+			<increazy_checkout_setup>
+				<setup>
+					<module>Increazy_Checkout</module>
+					<class>Mage_Sales_Model_Mysql4_Setup</class>
+				</setup>
+
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</increazy_checkout_setup>
+		</resources>
+
+        <events>
+			<checkout_submit_all_after>
+				<observers>
+					<increazy_checkout_checkout_submit_after>
+						<type>model</type>
+						<class>increazy_checkout/observer</class>
+						<method>registerTransactionId</method>
+					</increazy_checkout_checkout_submit_after>
+				</observers>
+			</checkout_submit_all_after>
+		</events>
+    </global>
+
+
+
+
+    <default>
+        <increazy_config>
+            <button>
+                <class>button btn primary action</class>
+            </button>
+
+            <onetap>
+                <text>Compra com 1 clique</text>
+                <class>button btn primary action</class>
+                <container_class>container row</container_class>
+                <group>increazy</group>
+            </onetap>
+        </increazy_config>>
+
+		<payment>
+			<increazy-billet>
+                <model>increazy_checkout/billet</model>
+                <title>Increazy Boleto</title>
+                <group>increazy</group>
+			</increazy-billet>
+
+			<increazy-credit>
+                <model>increazy_checkout/credit</model>
+                <title>Increazy Crédito</title>
+                <group>increazy</group>
+			</increazy-credit>
+
+			<increazy-creditcard>
+                <model>increazy_checkout/creditcard</model>
+                <title>Increazy Cartão de Crédito</title>
+                <group>increazy</group>
+			</increazy-creditcard>
+
+			<increazy-onetap>
+                <model>increazy_checkout/onetap</model>
+                <title>Increazy Cartão de Crédito (1 clique)</title>
+                <group>increazy</group>
+			</increazy-onetap>
+
+			<increazy-debitcard>
+                <model>increazy_checkout/debitcard</model>
+                <title>Increazy Cartão de Débito</title>
+                <group>increazy</group>
+			</increazy-debitcard>
+
+			<increazy-free>
+                <model>increazy_checkout/free</model>
+                <title>Increazy Grátis</title>
+                <group>increazy</group>
+			</increazy-free>
+
+			<increazy-other>
+                <model>increazy_checkout/other</model>
+                <title>Increazy Outro</title>
+                <group>increazy</group>
+			</increazy-other>
+
+			<increazy-pix>
+                <model>increazy_checkout/pix</model>
+                <title>Increazy Pix</title>
+                <group>increazy</group>
+			</increazy-pix>
+
+			<increazy-ted>
+                <model>increazy_checkout/ted</model>
+                <title>Increazy TED</title>
+                <group>increazy</group>
+			</increazy-ted>
+		</payment>
+	</default>
+</config>

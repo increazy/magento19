@@ -1,0 +1,41 @@
+<?php
+$data = $this->getInfo()->getData('additional_information');
+?>
+<p><?php echo $this->__('Método de pagamento: %s', $this->htmlEscape($data['method'])) ?></p>
+
+<?php if (isset($data['order'])): ?>
+    <p><?php echo $this->__('ID da transação: %s', $this->htmlEscape($data['order'])) ?></p>
+<?php endif; ?>
+
+<?php if (isset($data['cc_owner'])): ?>
+    <p><?php echo $this->__('Nome no Cartão: %s', $this->htmlEscape($data['cc_owner'])) ?></p>
+<?php endif; ?>
+
+<?php if (isset($data['internal_order']['details'])): ?>
+    <?php if (isset($data['internal_order']['details']['card'])): ?>
+        <p><?php echo $this->__('4 últimos dígitos: %s', $this->htmlEscape($data['internal_order']['details']['card'])) ?></p>
+    <?php endif; ?>
+<?php endif; ?>
+
+
+<?php if (isset($data['internal_order']['details']['installments'])): ?>
+    <p><?php echo $this->__('Número de Parcelas: %s', $this->htmlEscape($data['internal_order']['details']['installments'])) ?></p>
+<?php endif; ?>
+
+<?php if (isset($data['response']['url'])): ?>
+    <p><?php echo $this->__('Link: <a href="%s" target="_blank">Imprimir</a>', $this->htmlEscape($data['response']['url'])) ?></p>
+<?php endif; ?>
+
+<?php if (isset($data['response']['expiration'])): ?>
+    <p><?php echo $this->__('Expiração: %s', $data['response']['expiration']) ?></p>
+<?php endif; ?>
+
+
+<?php if (count($data['custom_inputs']) > 0): ?>
+    <p style="font-size:18px; width:100%; padding: 16px 0px;"><b>Campos adicionais</b></p>
+
+    <?php foreach ($data['custom_inputs'] as $key => $value): ?>
+        <p><?php echo $this->__('%s: ', $key) . ' ' . $this->__('%s', $value) ?></p>
+    <?php endforeach; ?>
+<?php endif; ?>
+
