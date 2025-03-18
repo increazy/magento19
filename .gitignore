@@ -1,0 +1,39 @@
+# Arquivos e pastas gerados pelo Magento
+/app/etc/local.xml
+/var/cache/*
+/var/session/*
+/var/log/*
+/var/report/*
+/var/backups/*
+/var/tmp/*
+/var/full_page_cache/*
+/var/package/*
+/var/locks/*
+
+# Arquivos de mídia (se não quiser versionar)
+/media/catalog/product/cache/*
+/media/tmp/*
+/media/import/*
+/media/downloadable/*
+/media/wysiwyg/*
+/media/xmlconnect/*
+
+# Arquivos de instalação e temporários
+/downloader/*
+/includes/config.php
+/install.php
+
+# Arquivos de dependências (se usar Composer)
+/vendor/*
+/composer.lock
+
+# Arquivos do sistema e IDE
+*.log
+*.DS_Store
+*.idea/*
+*.vscode/*
+/nbproject/*
+
+# Outros arquivos sensíveis ou desnecessários
+.htaccess.sample
+.php_cs.cache

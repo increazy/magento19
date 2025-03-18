@@ -519,6 +519,7 @@ class Zend_Http_Response
                 continue;
             }
 
+
             if ($line == "") {
                 // Done processing headers
                 break;
@@ -683,6 +684,8 @@ class Zend_Http_Response
             return gzinflate($body);
         }
     }
+
+
 
     /**
      * Create a new Zend_Http_Response object from a string

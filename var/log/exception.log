@@ -1,0 +1,82 @@
+2025-03-17T22:42:13+00:00 ERR (3): 
+PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php:128
+Stack trace:
+#0 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php(128): PDO->__construct('mysql:host=loca...', 'veels', 'rc0iSx79YyiAiDa...', Array)
+#1 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Mysql.php(111): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /var/www/html/magento/lib/Varien/Db/Adapter/Pdo/Mysql.php(396): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /var/www/html/magento/lib/Zend/Db/Adapter/Abstract.php(460): Varien_Db_Adapter_Pdo_Mysql->_connect()
+#4 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT VERSION(...', Array)
+#5 /var/www/html/magento/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SELECT VERSION(...', Array)
+#6 /var/www/html/magento/lib/Zend/Db/Adapter/Abstract.php(828): Varien_Db_Adapter_Pdo_Mysql->query('SELECT VERSION(...', Array)
+#7 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer/Db/Mysql4.php(45): Zend_Db_Adapter_Abstract->fetchOne('SELECT VERSION(...')
+#8 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer/Db.php(75): Mage_Install_Model_Installer_Db_Mysql4->getVersion()
+#9 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer.php(146): Mage_Install_Model_Installer_Db->checkDbConnectionData(Array)
+#10 /var/www/html/magento/app/code/core/Mage/Install/controllers/WizardController.php(326): Mage_Install_Model_Installer->installConfig(Array)
+#11 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Action.php(418): Mage_Install_WizardController->configPostAction()
+#12 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Router/Standard.php(254): Mage_Core_Controller_Varien_Action->dispatch('configPost')
+#13 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Front.php(172): Mage_Core_Controller_Varien_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#14 /var/www/html/magento/app/code/core/Mage/Core/Model/App.php(381): Mage_Core_Controller_Varien_Front->dispatch()
+#15 /var/www/html/magento/app/Mage.php(686): Mage_Core_Model_App->run(Array)
+#16 /var/www/html/magento/index.php(85): Mage::run('', 'store')
+#17 {main}
+
+Next Zend_Db_Adapter_Exception: SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php:144
+Stack trace:
+#0 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Mysql.php(111): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#1 /var/www/html/magento/lib/Varien/Db/Adapter/Pdo/Mysql.php(396): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#2 /var/www/html/magento/lib/Zend/Db/Adapter/Abstract.php(460): Varien_Db_Adapter_Pdo_Mysql->_connect()
+#3 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT VERSION(...', Array)
+#4 /var/www/html/magento/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SELECT VERSION(...', Array)
+#5 /var/www/html/magento/lib/Zend/Db/Adapter/Abstract.php(828): Varien_Db_Adapter_Pdo_Mysql->query('SELECT VERSION(...', Array)
+#6 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer/Db/Mysql4.php(45): Zend_Db_Adapter_Abstract->fetchOne('SELECT VERSION(...')
+#7 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer/Db.php(75): Mage_Install_Model_Installer_Db_Mysql4->getVersion()
+#8 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer.php(146): Mage_Install_Model_Installer_Db->checkDbConnectionData(Array)
+#9 /var/www/html/magento/app/code/core/Mage/Install/controllers/WizardController.php(326): Mage_Install_Model_Installer->installConfig(Array)
+#10 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Action.php(418): Mage_Install_WizardController->configPostAction()
+#11 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Router/Standard.php(254): Mage_Core_Controller_Varien_Action->dispatch('configPost')
+#12 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Front.php(172): Mage_Core_Controller_Varien_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#13 /var/www/html/magento/app/code/core/Mage/Core/Model/App.php(381): Mage_Core_Controller_Varien_Front->dispatch()
+#14 /var/www/html/magento/app/Mage.php(686): Mage_Core_Model_App->run(Array)
+#15 /var/www/html/magento/index.php(85): Mage::run('', 'store')
+#16 {main}
+2025-03-18T14:03:58+00:00 ERR (3): 
+PDOException: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost' in /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php:128
+Stack trace:
+#0 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php(128): PDO->__construct('mysql:host=loca...', 'root', 'password', Array)
+#1 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Mysql.php(111): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /var/www/html/magento/lib/Varien/Db/Adapter/Pdo/Mysql.php(396): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /var/www/html/magento/lib/Zend/Db/Adapter/Abstract.php(460): Varien_Db_Adapter_Pdo_Mysql->_connect()
+#4 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT VERSION(...', Array)
+#5 /var/www/html/magento/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SELECT VERSION(...', Array)
+#6 /var/www/html/magento/lib/Zend/Db/Adapter/Abstract.php(828): Varien_Db_Adapter_Pdo_Mysql->query('SELECT VERSION(...', Array)
+#7 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer/Db/Mysql4.php(45): Zend_Db_Adapter_Abstract->fetchOne('SELECT VERSION(...')
+#8 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer/Db.php(75): Mage_Install_Model_Installer_Db_Mysql4->getVersion()
+#9 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer.php(146): Mage_Install_Model_Installer_Db->checkDbConnectionData(Array)
+#10 /var/www/html/magento/app/code/core/Mage/Install/controllers/WizardController.php(326): Mage_Install_Model_Installer->installConfig(Array)
+#11 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Action.php(418): Mage_Install_WizardController->configPostAction()
+#12 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Router/Standard.php(254): Mage_Core_Controller_Varien_Action->dispatch('configPost')
+#13 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Front.php(172): Mage_Core_Controller_Varien_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#14 /var/www/html/magento/app/code/core/Mage/Core/Model/App.php(381): Mage_Core_Controller_Varien_Front->dispatch()
+#15 /var/www/html/magento/app/Mage.php(686): Mage_Core_Model_App->run(Array)
+#16 /var/www/html/magento/index.php(85): Mage::run('', 'store')
+#17 {main}
+
+Next Zend_Db_Adapter_Exception: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost' in /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php:144
+Stack trace:
+#0 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Mysql.php(111): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#1 /var/www/html/magento/lib/Varien/Db/Adapter/Pdo/Mysql.php(396): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#2 /var/www/html/magento/lib/Zend/Db/Adapter/Abstract.php(460): Varien_Db_Adapter_Pdo_Mysql->_connect()
+#3 /var/www/html/magento/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT VERSION(...', Array)
+#4 /var/www/html/magento/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SELECT VERSION(...', Array)
+#5 /var/www/html/magento/lib/Zend/Db/Adapter/Abstract.php(828): Varien_Db_Adapter_Pdo_Mysql->query('SELECT VERSION(...', Array)
+#6 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer/Db/Mysql4.php(45): Zend_Db_Adapter_Abstract->fetchOne('SELECT VERSION(...')
+#7 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer/Db.php(75): Mage_Install_Model_Installer_Db_Mysql4->getVersion()
+#8 /var/www/html/magento/app/code/core/Mage/Install/Model/Installer.php(146): Mage_Install_Model_Installer_Db->checkDbConnectionData(Array)
+#9 /var/www/html/magento/app/code/core/Mage/Install/controllers/WizardController.php(326): Mage_Install_Model_Installer->installConfig(Array)
+#10 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Action.php(418): Mage_Install_WizardController->configPostAction()
+#11 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Router/Standard.php(254): Mage_Core_Controller_Varien_Action->dispatch('configPost')
+#12 /var/www/html/magento/app/code/core/Mage/Core/Controller/Varien/Front.php(172): Mage_Core_Controller_Varien_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#13 /var/www/html/magento/app/code/core/Mage/Core/Model/App.php(381): Mage_Core_Controller_Varien_Front->dispatch()
+#14 /var/www/html/magento/app/Mage.php(686): Mage_Core_Model_App->run(Array)
+#15 /var/www/html/magento/index.php(85): Mage::run('', 'store')
+#16 {main}
