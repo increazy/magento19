@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <api2>
+        <resource_groups>
+            <core translate="title" module="extrarestful">
+                <title>Core</title>
+                <sort_order>1</sort_order>
+            </core>
+            <cms translate="title" module="extrarestful">
+                <title>CMS</title>
+                <sort_order>200</sort_order>
+            </cms>
+        </resource_groups>
+
+        <resources>
+            <!-- Improve existing resources -->
+            <product>
+                <attributes>
+                    <updated_at>Updated At</updated_at>
+                    <required_options>Has Required Options</required_options>
+                    <has_options>Has Options</has_options>
+                </attributes>
+                <entity_only_attributes>
+                    <admin>
+                        <read>
+                            <has_custom_options>0</has_custom_options>
+                        </read>
+                    </admin>
+                    <customer>
+                        <read>
+                            <has_custom_options>0</has_custom_options>
+                        </read>
+                    </customer>
+                    <guest>
+                        <read>
+                            <has_custom_options>0</has_custom_options>
+                        </read>
+                    </guest>
+                </entity_only_attributes>
+                <exclude_attributes>
+                    <admin>
+                        <read>
+                            <has_custom_options>1</has_custom_options>
+                        </read>
+                        <write>
+                            <updated_at>1</updated_at>
+                            <has_options>1</has_options>
+                            <required_options>1</required_options>
+                        </write>
+                    </admin>
+                    <customer>
+                        <read>
+                            <has_custom_options>1</has_custom_options>
+                        </read>
+                    </customer>
+                    <guest>
+                        <read>
+                            <has_custom_options>1</has_custom_options>
+                        </read>
+                    </guest>
+                </exclude_attributes>
+                <force_attributes>
+                    <customer>
+                        <!-- Needed for grouped-associated products -->
+                        <qty>1</qty>
+                        <!-- Needed for configurable-associated products -->
+                        <super_attributes>1</super_attributes>
+                    </customer>
+                    <guest>
+                        <qty>1</qty>
+                        <super_attributes>1</super_attributes>
+                    </guest>
+                </force_attributes>
+                <!-- Add self as version 2.  See class rewrites in config.xml -->
+                <versions>1,2</versions>
+            </product>
+            <customer>
+                <attributes>
+                    <updated_at>Updated At</updated_at>
+                </attributes>
+                <exclude_attributes>
+                    <admin>
+                        <write>
+                            <updated_at>1</updated_at>
+                        </write>
+                    </admin>
+                    <customer>
+                        <read>
+                            <entity_id>0</entity_id>
+                        </read>
+                    </customer>
+                </exclude_attributes>
+            </customer>
+
+            <!-- New resources -->
+            <store translate="title" module="extrarestful">
+                <group>core</group>
+                <model>extrarestful/api2_store</model>
+                <working_model>core/store</working_model>
+                <title>Store View</title>
+                <sort_order>10</sort_order>
+                <privileges>
+                    <admin>
+                        <retrieve>1</retrieve>
+                    </admin>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <attributes>
+                    <store_id>Store ID</store_id>
+                    <code>Code</code>
+                    <name>Name</name>
+                    <is_active>Is Active</is_active>
+                    <!-- Config values -->
+                    <general_locale_code>Configuration: Locale</general_locale_code>
+                    <general_locale_timezone>Configuration: Timezone</general_locale_timezone>
+                    <unsecure_base_url>Unsecure Base URL</unsecure_base_url>
+                    <secure_base_url>Secure Base URL</secure_base_url>
+                </attributes>
+                <filters>
+                    <is_active>boolean</is_active>
+                </filters>
+                <entity_only_attributes>
+                    <admin>
+                        <read>
+                            <general_locale_code>1</general_locale_code>
+                            <general_locale_timezone>1</general_locale_timezone>
+                        </read>
+                    </admin>
+                    <customer>
+                        <read>
+                            <general_locale_code>1</general_locale_code>
+                            <general_locale_timezone>1</general_locale_timezone>
+                        </read>
+                    </customer>
+                    <guest>
+                        <read>
+                            <general_locale_code>1</general_locale_code>
+                            <general_locale_timezone>1</general_locale_timezone>
+                        </read>
+                    </guest>
+                </entity_only_attributes>
+                <exclude_attributes>
+                    <customer>
+                        <read>
+                            <is_active>1</is_active>
+                        </read>
+                    </customer>
+                    <guest>
+                        <read>
+                            <is_active>1</is_active>
+                        </read>
+                    </guest>
+                </exclude_attributes>
+                <routes>
+                    <route_collection>
+                        <route>/stores</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_entity>
+                        <route>/stores/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                </routes>
+                <versions>1</versions>
+            </store>
+
+            <rewrite translate="title" module="extrarestful">
+                <group>core</group>
+                <model>extrarestful/api2_rewrite</model>
+                <working_model>core/url_rewrite</working_model>
+                <title>URL Rewrite</title>
+                <sort_order>50</sort_order>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </admin>
+                </privileges>
+                <attributes>
+                    <url_rewrite_id>Rewrite ID</url_rewrite_id>
+                    <store_id>Store ID</store_id>
+                    <category_id>Category ID</category_id>
+                    <product_id>Product ID</product_id>
+                    <request_path>Request Path</request_path>
+                    <target_path>Target Path</target_path>
+                    <options>Redirect Options</options>
+                </attributes>
+                <exclude_attributes>
+                    <admin>
+                        <write>
+                            <url_rewrite_id>1</url_rewrite_id>
+                        </write>
+                    </admin>
+                </exclude_attributes>
+                <routes>
+                    <route_entity>
+                        <route>/rewrites/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_collection>
+                        <route>/rewrites</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                </routes>
+                <versions>1</versions>
+            </rewrite>
+
+            <category translate="title" module="extrarestful">
+                <group>catalog</group>
+                <model>extrarestful/api2_category</model>
+                <working_model>catalog/category</working_model>
+                <title>Category</title>
+                <!-- Sibling (catalog_product) has sort order 50 -->
+                <sort_order>100</sort_order>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </admin>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <attributes>
+                    <entity_id>Category ID</entity_id>
+                    <parent_id>Parent ID</parent_id>
+                    <updated_at>Updated At</updated_at>
+                    <path>Parents Path</path>
+                    <position>Position</position>
+                    <level>Level</level>
+                    <children_count>Children Count</children_count>
+                    <image_url>Image URL</image_url>
+                    <product_count>Product Count</product_count>
+                    <url>URL</url>
+                </attributes>
+                <filters>
+                    <children_count>int</children_count>
+                    <level>int</level>
+                    <position>int</position>
+                </filters>
+                <exclude_attributes>
+                    <admin>
+                        <write>
+                            <entity_id>1</entity_id>
+                            <updated_at>1</updated_at>
+                            <path>1</path>
+                            <level>1</level>
+                            <children_count>1</children_count>
+                            <image_url>1</image_url>
+                            <url>1</url>
+                        </write>
+                    </admin>
+                    <customer>
+                        <read>
+                            <image>1</image>
+                            <is_active>1</is_active>
+                        </read>
+                    </customer>
+                    <guest>
+                        <read>
+                            <image>1</image>
+                            <is_active>1</is_active>
+                        </read>
+                    </guest>
+                </exclude_attributes>
+                <routes>
+                    <route_entity>
+                        <route>/categories/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_entity_with_store>
+                        <route>/categories/:id/store/:store</route>
+                        <action_type>entity</action_type>
+                    </route_entity_with_store>
+                    <route_collection>
+                        <route>/categories</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_collection_with_store>
+                        <route>/categories/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_store>
+                    <route_collection_with_parent_filter>
+                        <route>/categories/:parent/children</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_parent_filter>
+                    <route_collection_with_parent_and_store>
+                        <route>/categories/:parent/children/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_parent_and_store>
+                </routes>
+                <versions>1</versions>
+            </category>
+
+            <category_products translate="title" module="extrarestful">
+                <group>category</group>
+                <model>extrarestful/api2_category_product</model>
+                <working_model>catalog/product</working_model>
+                <title>Category Products</title>
+                <sort_order>120</sort_order>
+                <privileges>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <routes>
+                    <route_collection>
+                        <route>/categories/:category/products</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_collection_with_store>
+                        <route>/categories/:category/products/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_store>
+                </routes>
+                <versions>1</versions>
+            </category_products>
+
+            <category_tree translate="title" module="extrarestful">
+                <group>category</group>
+                <model>extrarestful/api2_categorytree</model>
+                <working_model>catalog/category</working_model>
+                <title>Category Tree</title>
+                <sort_order>101</sort_order>
+                <privileges>
+                    <admin>
+                        <retrieve>1</retrieve>
+                    </admin>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <routes>
+                    <route_tree>
+                        <route>/category_trees</route>
+                        <!-- collection since there may actually be several trees -->
+                        <action_type>collection</action_type>
+                    </route_tree>
+                    <route_tree_with_store>
+                        <route>/category_trees/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_tree_with_store>
+                </routes>
+                <versions>1</versions>
+            </category_tree>
+
+            <product_custom_options translate="title" module="extrarestful">
+                <group>catalog_product</group>
+                <model>extrarestful/api2_product_option</model>
+                <working_model>catalog/product_option</working_model>
+                <title>Product Custom Option</title>
+                <sort_order>100</sort_order>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </admin>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <attributes>
+                    <option_id>Option ID</option_id>
+                    <type>Type</type>
+                    <is_require>Is Required</is_require>
+                    <title>Title</title>
+                    <sku>SKU</sku>
+                    <max_characters>Maximum Characters</max_characters>
+                    <file_extension>File Extension</file_extension>
+                    <image_size_x>Image Size X</image_size_x>
+                    <image_size_y>Image Size Y</image_size_y>
+                    <price>Price</price>
+                    <price_type>Price Type</price_type>
+                    <sort_order>Sort Order</sort_order>
+                </attributes>
+                <filters>
+                    <is_require>boolean</is_require>
+                    <max_characters>int</max_characters>
+                    <price>float</price>
+                    <sort_order>int</sort_order>
+                    <values>
+                        <price>float</price>
+                        <sort_order>int</sort_order>
+                    </values>
+                </filters>
+                <exclude_attributes>
+                    <admin>
+                        <write>
+                            <option_id>1</option_id>
+                        </write>
+                    </admin>
+                </exclude_attributes>
+                <force_attributes>
+                    <admin>
+                        <values>1</values>
+                    </admin>
+                    <customer>
+                        <values>1</values>
+                    </customer>
+                    <guest>
+                        <values>1</values>
+                    </guest>
+                </force_attributes>
+                <routes>
+                    <route_entity>
+                        <route>/products/options/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_entity_with_store>
+                        <route>/products/options/:id/store/:store</route>
+                        <action_type>entity</action_type>
+                    </route_entity_with_store>
+                    <route_collection>
+                        <route>/products/:product/options</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_collection_with_store>
+                        <route>/products/:product/options/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_store>
+                </routes>
+                <versions>1</versions>
+            </product_custom_options>
+
+            <product_relation translate="title" module="extrarestful">
+                <group>catalog_product</group>
+                <model>extrarestful/api2_product_related</model>
+                <working_model>catalog/product</working_model>
+                <title>Related Products</title>
+                <sort_order>110</sort_order>
+                <privileges>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <routes>
+                    <route_collection>
+                        <route>/products/:product/related</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_collection_with_store>
+                        <route>/products/:product/related/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_store>
+                </routes>
+                <versions>1</versions>
+            </product_relation>
+
+            <product_upsells translate="title" module="extrarestful">
+                <group>catalog_product</group>
+                <model>extrarestful/api2_product_upsell</model>
+                <working_model>catalog/product</working_model>
+                <title>Up-sells</title>
+                <sort_order>120</sort_order>
+                <privileges>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <routes>
+                    <route_collection>
+                        <route>/products/:product/upsells</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_collection_with_store>
+                        <route>/products/:product/upsells/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_store>
+                </routes>
+                <versions>1</versions>
+            </product_upsells>
+
+            <product_crosssells translate="title" module="extrarestful">
+                <group>catalog_product</group>
+                <model>extrarestful/api2_product_crosssell</model>
+                <working_model>catalog/product</working_model>
+                <title>Cross-sells</title>
+                <sort_order>130</sort_order>
+                <privileges>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <routes>
+                    <route_collection>
+                        <route>/products/:product/crosssells</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_collection_with_store>
+                        <route>/products/:product/crosssells/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_store>
+                </routes>
+                <versions>1</versions>
+            </product_crosssells>
+
+            <product_associated translate="title" module="extrarestful">
+                <group>catalog_product</group>
+                <model>extrarestful/api2_product_associated</model>
+                <working_model>catalog/product</working_model>
+                <title>Associated Products</title>
+                <sort_order>140</sort_order>
+                <privileges>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <routes>
+                    <route_collection>
+                        <route>/products/:product/associated</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_collection_with_store>
+                        <route>/products/:product/associated/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_store>
+                </routes>
+                <versions>1</versions>
+            </product_associated>
+
+            <product_review translate="title" module="extrarestful">
+                <group>catalog</group>
+                <model>extrarestful/api2_review</model>
+                <working_model>extrarestful/review</working_model>
+                <title>Review</title>
+                <sort_order>150</sort_order>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </admin>
+                    <customer>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <attributes>
+                    <review_id>Review ID</review_id>
+                    <product_id>Product ID</product_id>
+                    <created_at>Created At</created_at>
+                    <title>Title</title>
+                    <detail>Detail</detail>
+                    <nickname>Customer Nickname</nickname>
+                    <customer_id>Customer ID</customer_id>
+                    <ratings>Ratings</ratings>
+                    <status>Status</status>
+                    <stores>Visible In Stores</stores>
+                </attributes>
+                <exclude_attributes>
+                    <admin>
+                        <write>
+                            <created_at>1</created_at>
+                            <review_id>1</review_id>
+                            <product_id>1</product_id>
+                        </write>
+                    </admin>
+                    <customer>
+                        <write>
+                            <created_at>1</created_at>
+                            <customer_id>1</customer_id>
+                            <product_id>1</product_id>
+                            <review_id>1</review_id>
+                            <status>1</status>
+                            <stores>1</stores>
+                        </write>
+                    </customer>
+                    <guest>
+                        <read>
+                            <customer_id>1</customer_id>
+                            <status>1</status>
+                        </read>
+                        <write>
+                            <created_at>1</created_at>
+                            <customer_id>1</customer_id>
+                            <product_id>1</product_id>
+                            <review_id>1</review_id>
+                            <status>1</status>
+                            <stores>1</stores>
+                        </write>
+                    </guest>
+                </exclude_attributes>
+                <routes>
+                    <route_entity>
+                        <route>/reviews/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_entity_with_store>
+                        <route>/reviews/:id/store/:store</route>
+                        <action_type>entity</action_type>
+                    </route_entity_with_store>
+                    <route_collection>
+                        <route>/reviews</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_collection_with_store>
+                        <route>/reviews/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_store>
+                    <route_collection_for_product>
+                        <route>/products/:product/reviews</route>
+                        <action_type>collection</action_type>
+                    </route_collection_for_product>
+                    <route_collection_for_product_with_store>
+                        <route>/products/:product/reviews/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_for_product_with_store>
+                </routes>
+                <versions>1</versions>
+            </product_review>
+
+            <cms_block translate="title" module="extrarestful">
+                <group>cms</group>
+                <model>extrarestful/api2_block</model>
+                <working_model>extrarestful/block</working_model>
+                <title>Block</title>
+                <sort_order>10</sort_order>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </admin>
+                    <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                    <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <attributes>
+                    <block_id>Block ID</block_id>
+                    <content>Content</content>
+                    <identifier>Identifier</identifier>
+                    <is_active>Is Active</is_active>
+                    <stores>Stores</stores>
+                    <title>Title</title>
+                    <update_time>Updated At</update_time>
+                </attributes>
+                <filters>
+                    <is_active>boolean</is_active>
+                </filters>
+                <exclude_attributes>
+                    <admin>
+                        <write>
+                            <block_id>1</block_id>
+                            <update_time>1</update_time>
+                        </write>
+                    </admin>
+                    <customer>
+                        <read>
+                            <is_active>1</is_active>
+                            <title>1</title>
+                        </read>
+                    </customer>
+                    <guest>
+                        <read>
+                            <is_active>1</is_active>
+                            <title>1</title>
+                        </read>
+                    </guest>
+                </exclude_attributes>
+                <routes>
+                    <route_entity>
+                        <route>/blocks/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_entity_with_store>
+                        <route>/blocks/:id/store/:store</route>
+                        <action_type>entity</action_type>
+                    </route_entity_with_store>
+                    <route_collection>
+                        <route>/blocks</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                </routes>
+                <versions>1</versions>
+            </cms_block>
+
+            <cms_page translate="title" module="extrarestful">
+                <group>cms</group>
+                <model>extrarestful/api2_page</model>
+                <working_model>extrarestful/page</working_model>
+                <title>Page</title>
+                <sort_order>20</sort_order>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </admin>
+                </privileges>
+                <attributes>
+                    <content>Content</content>
+                    <content_heading>Content Heading</content_heading>
+                    <custom_layout_update_xml>Custom Layout Update XML</custom_layout_update_xml>
+                    <custom_root_template>Custom Layout</custom_root_template>
+                    <custom_theme>Custom Theme</custom_theme>
+                    <custom_theme_from>Custom Design From</custom_theme_from>
+                    <custom_theme_to>Custom Design To</custom_theme_to>
+                    <identifier>Identifier</identifier>
+                    <is_active>Is Active</is_active>
+                    <layout_update_xml>Layout Update XML</layout_update_xml>
+                    <meta_description>Meta Description</meta_description>
+                    <meta_keywords>Meta Keywords</meta_keywords>
+                    <page_id>Page ID</page_id>
+                    <root_template>Layout</root_template>
+                    <stores>Stores</stores>
+                    <title>Title</title>
+                    <update_time>Updated At</update_time>
+                </attributes>
+                <filters>
+                    <is_active>boolean</is_active>
+                </filters>
+                <exclude_attributes>
+                    <admin>
+                        <write>
+                            <page_id>1</page_id>
+                            <update_time>1</update_time>
+                        </write>
+                    </admin>
+                </exclude_attributes>
+                <routes>
+                    <route_entity>
+                        <route>/pages/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_collection>
+                        <route>/pages</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                </routes>
+                <versions>1</versions>
+            </cms_page>
+        </resources>
+    </api2>
+</config>
