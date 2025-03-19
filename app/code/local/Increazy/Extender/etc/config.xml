@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Increazy_Extender>
+            <version>1.0.0</version>
+        </Increazy_Extender>
+    </modules>
+    <global>
+        <models>
+            <extender>
+                <class>Increazy_Extender_Model</class>
+            </extender>
+        </models>
+    </global>
+    <api>
+        <resources>
+            <catalog_category>
+                <methods>
+                    <tree_full>
+                        <model>extender/category_api</model>
+                        <method>catalogCategoryTreeFull</method>
+                    </tree_full>
+                </methods>
+            </catalog_category>
+        </resources>
+    </api>
+</config>
