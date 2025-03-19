@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+             xmlns="http://schemas.xmlsoap.org/wsdl/" 
+             name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+            <element name="getFullCategoryTreeRequest">
+                <complexType>
+                    <sequence>
+                        <element name="sessionId" type="xsd:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="getFullCategoryTreeResponse">
+                <complexType>
+                    <sequence>
+                        <element name="categoryTree" type="typens:catalogCategoryEntityFull" minOccurs="0"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <complexType name="catalogCategoryEntityFull">
+                <all>
+                    <element name="category_id" type="xsd:int"/>
+                    <element name="name" type="xsd:string"/>
+                    <element name="is_active" type="xsd:int"/>
+                    <element name="position" type="xsd:int"/>
+                    <element name="level" type="xsd:int"/>
+                    <element name="parent_id" type="xsd:int"/>
+                    <element name="all_attributes" type="typens:ArrayOfString" minOccurs="0"/>
+                    <element name="children" type="typens:catalogCategoryEntityFullArray" minOccurs="0"/>
+                </all>
+            </complexType>
+            <complexType name="catalogCategoryEntityFullArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:catalogCategoryEntityFull[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="ArrayOfString">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+        </schema>
+    </types>
+    <message name="increazyExtenderGetFullCategoryTreeRequest">
+        <part name="parameters" element="typens:getFullCategoryTreeRequest"/>
+    </message>
+    <message name="increazyExtenderGetFullCategoryTreeResponse">
+        <part name="parameters" element="typens:getFullCategoryTreeResponse"/>
+    </message>
+    <portType name="{{var wsdl.name}}PortType">
+        <operation name="increazyExtenderGetFullCategoryTree">
+            <input message="typens:increazyExtenderGetFullCategoryTreeRequest"/>
+            <output message="typens:increazyExtenderGetFullCategoryTreeResponse"/>
+        </operation>
+    </portType>
+    <binding name="{{var wsdl.name}}Binding" type="typens:{{var wsdl.name}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="increazyExtenderGetFullCategoryTree">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="{{var wsdl.name}}Service">
+        <port name="{{var wsdl.name}}Port" binding="typens:{{var wsdl.name}}Binding">
+            <soap:address location="{{var wsdl.handler}}"/>
+        </port>
+    </service>
+</definitions>

@@ -7,21 +7,9 @@
     </modules>
     <global>
         <models>
-            <extender>
+            <increazy_extender>
                 <class>Increazy_Extender_Model</class>
-            </extender>
+            </increazy_extender>
         </models>
-        <api>
-            <resources>
-                <catalog_category>
-                    <methods>
-                        <tree_full>
-                            <method>treeFull</method>
-                            <model>extender/category_api</model>
-                        </tree_full>
-                    </methods>
-                </catalog_category>
-            </resources>
-        </api>
     </global>
 </config>

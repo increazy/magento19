@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <increazy_extender translate="title" module="increazy_extender">
+                <model>increazy_extender/api</model>
+                <title>Increazy Extender API</title>
+                <methods>
+                    <getFullCategoryTree translate="title" module="increazy_extender">
+                        <title>Get Full Category Tree with All Attributes</title>
+                        <method>getFullCategoryTree</method>
+                    </getFullCategoryTree>
+                </methods>
+            </increazy_extender>
+        </resources>
+    </api>
+</config>
