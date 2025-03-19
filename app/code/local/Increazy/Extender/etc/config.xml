@@ -11,17 +11,17 @@
                 <class>Increazy_Extender_Model</class>
             </extender>
         </models>
+        <api>
+            <resources>
+                <catalog_category>
+                    <methods>
+                        <tree_full>
+                            <method>treeFull</method>
+                            <model>extender/category_api</model>
+                        </tree_full>
+                    </methods>
+                </catalog_category>
+            </resources>
+        </api>
     </global>
-    <api2>
-        <resources>
-            <catalog_category>
-                <methods>
-                    <tree_full>
-                        <method>catalogCategoryTreeFull</method>
-                        <model>extender/category_api</model>
-                    </tree_full>
-                </methods>
-            </catalog_category>
-        </resources>
-    </api2>
 </config>
