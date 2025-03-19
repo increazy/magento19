@@ -12,16 +12,16 @@
             </extender>
         </models>
     </global>
-    <api>
+    <api2>
         <resources>
             <catalog_category>
                 <methods>
                     <tree_full>
-                        <model>extender/category_api</model>
                         <method>catalogCategoryTreeFull</method>
+                        <model>extender/category_api</model>
                     </tree_full>
                 </methods>
             </catalog_category>
         </resources>
-    </api>
+    </api2>
 </config>

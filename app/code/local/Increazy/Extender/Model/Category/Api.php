@@ -2,8 +2,10 @@
 
 class Increazy_Extender_Model_Category_Api extends Mage_Catalog_Model_Category_Api
 {
-    public function catalogCategoryTreeFull($parentId = null, $store = null)
+    public function catalogCategoryTreeFull($sessionId, $parentId = null, $store = null)
     {
+        $this->_checkSession($sessionId);
+
         if (is_null($parentId)) {
             $parentId = Mage::app()->getStore($store)->getRootCategoryId();
         }
@@ -13,19 +15,27 @@ class Increazy_Extender_Model_Category_Api extends Mage_Catalog_Model_Category_A
 
     protected function _getCategoryTree($parentId, $store)
     {
-        $tree = Mage::getModel('catalog/category')->getCollection()
+        $categories = Mage::getModel('catalog/category')->getCollection()
             ->setStoreId($store)
             ->addAttributeToSelect('*')
             ->addAttributeToFilter('parent_id', $parentId)
             ->addIsActiveFilter();
 
-        $categories = [];
-        foreach ($tree as $category) {
+        $result = [];
+        foreach ($categories as $category) {
             $categoryData = $category->getData();
             $categoryData['children'] = $this->_getCategoryTree($category->getId(), $store);
-            $categories[] = $categoryData;
+            $result[] = $categoryData;
         }
 
-        return $categories;
+        return $result;
+    }
+
+    protected function _checkSession($sessionId)
+    {
+        $user = Mage::getModel('api/session')->loginBySessionId($sessionId);
+        if (!$user) {
+            throw new Mage_Api_Exception('session_expired', 'Invalid API session.');
+        }
     }
 }
