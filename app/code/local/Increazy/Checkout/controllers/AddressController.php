@@ -18,7 +18,7 @@ class Increazy_Checkout_AddressController extends Mage_Core_Controller_Front_Act
 
             $address = Mage::getModel('customer/address');
 
-            foreach ($bodt as $key => $value) {
+            foreach ($body as $key => $value) {
                 $address->setData($key, $value);
             }
             $address->setCustomerId($customerID)
