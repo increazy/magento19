@@ -19,6 +19,19 @@ class Increazy_Checkout_AddressController extends Mage_Core_Controller_Front_Act
             var_dump('state: ' . $body['state']);
             var_dump('region: ' . $region->getId());
             var_dump('region data: ', $region->getData());
+
+            $regions = Mage::getModel('directory/region')->getCollection()
+                ->addCountryFilter('BR');
+
+            // Exibe todas as regiões com var_dump
+            foreach ($regions as $region) {
+                var_dump([
+                    'id' => $region->getId(),
+                    'code' => $region->getCode(),       // Sigla, ex.: "MG"
+                    'name' => $region->getName()       // Nome completo, ex.: "Minas Gerais"
+                ]);
+            }
+
             die();
 
             $address = Mage::getModel('customer/address');
