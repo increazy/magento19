@@ -14,7 +14,7 @@ class Increazy_Checkout_AddressController extends Mage_Core_Controller_Front_Act
     {
         Mage::helper('increazy_checkout')->run($this, function($body) {
             $customerID = Mage::helper('increazy_checkout')->hashDecode($body['token']);
-            $region = Mage::getModel('directory/region')->loadByName($body['state'], 'BR');
+            $region = Mage::getModel('directory/region')->loadByCode($body['state'], 'BR');
 
             $address = Mage::getModel('customer/address');
 
