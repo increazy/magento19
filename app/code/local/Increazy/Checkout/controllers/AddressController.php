@@ -31,7 +31,6 @@ class Increazy_Checkout_AddressController extends Mage_Core_Controller_Front_Act
                     'name' => $region->getName()       // Nome completo, ex.: "Minas Gerais"
                 ]);
             }
-
             die();
 
             $address = Mage::getModel('customer/address');
