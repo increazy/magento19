@@ -18,7 +18,7 @@ class Increazy_Checkout_AddressController extends Mage_Core_Controller_Front_Act
 
             var_dump('state: ' . $body['state']);
             var_dump('region: ' . $region->getId());
-            var_dump('region data: ' . $region->getData());
+            var_dump('region data: ', $region->getData());
             die();
 
             $address = Mage::getModel('customer/address');
