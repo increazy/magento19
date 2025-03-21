@@ -54,6 +54,8 @@ class Increazy_Checkout_OrderController extends Mage_Core_Controller_Front_Actio
         Mage::helper('increazy_checkout')->run($this, function($body) {
             $customerID = Mage::helper('increazy_checkout')->hashDecode($body['token']);
 
+            var_dump($customerID);
+
             $orderCollection = Mage::getResourceModel('sales/order_collection')
                 ->addFieldToSelect('*')
                 ->addFieldToFilter('customer_id', $customerID)
