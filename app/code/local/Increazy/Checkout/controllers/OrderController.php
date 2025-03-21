@@ -56,7 +56,7 @@ class Increazy_Checkout_OrderController extends Mage_Core_Controller_Front_Actio
 
             $orderCollection = Mage::getResourceModel('sales/order_collection')
                 ->addFieldToSelect('*')
-                ->addFieldToFilter('customer_id', strval($customerID))
+                ->addFieldToFilter('customer_id', intval($customerID))
                 ->setOrder('created_at', 'desc')
             ;
 
