@@ -14,50 +14,7 @@ class Increazy_Checkout_AddressController extends Mage_Core_Controller_Front_Act
     {
         Mage::helper('increazy_checkout')->run($this, function($body) {
             $customerID = Mage::helper('increazy_checkout')->hashDecode($body['token']);
-            $region = Mage::getModel('directory/region')->loadByCode($body['state'], 'BR');
-
-            $regionsData = [
-                ['code' => 'AC', 'name' => 'Acre'],
-                ['code' => 'AL', 'name' => 'Alagoas'],
-                ['code' => 'AP', 'name' => 'Amapá'],
-                ['code' => 'AM', 'name' => 'Amazonas'],
-                ['code' => 'BA', 'name' => 'Bahia'],
-                ['code' => 'CE', 'name' => 'Ceará'],
-                ['code' => 'DF', 'name' => 'Distrito Federal'],
-                ['code' => 'ES', 'name' => 'Espírito Santo'],
-                ['code' => 'GO', 'name' => 'Goiás'],
-                ['code' => 'MA', 'name' => 'Maranhão'],
-                ['code' => 'MT', 'name' => 'Mato Grosso'],
-                ['code' => 'MS', 'name' => 'Mato Grosso do Sul'],
-                ['code' => 'MG', 'name' => 'Minas Gerais'],
-                ['code' => 'PA', 'name' => 'Pará'],
-                ['code' => 'PB', 'name' => 'Paraíba'],
-                ['code' => 'PR', 'name' => 'Paraná'],
-                ['code' => 'PE', 'name' => 'Pernambuco'],
-                ['code' => 'PI', 'name' => 'Piauí'],
-                ['code' => 'RJ', 'name' => 'Rio de Janeiro'],
-                ['code' => 'RN', 'name' => 'Rio Grande do Norte'],
-                ['code' => 'RS', 'name' => 'Rio Grande do Sul'],
-                ['code' => 'RO', 'name' => 'Rondônia'],
-                ['code' => 'RR', 'name' => 'Roraima'],
-                ['code' => 'SC', 'name' => 'Santa Catarina'],
-                ['code' => 'SP', 'name' => 'São Paulo'],
-                ['code' => 'SE', 'name' => 'Sergipe'],
-                ['code' => 'TO', 'name' => 'Tocantins'],
-            ];
-        
-            foreach ($regionsData as $data) {
-                $region = Mage::getModel('directory/region');
-                $region->setData([
-                    'country_id' => 'BR',
-                    'code' => $data['code'],
-                    'default_name' => $data['name']
-                ]);
-                $region->save();
-            }
-            
-            echo "Todos os estados brasileiros foram cadastrados com sucesso!";
-            die();
+            $region = Mage::getModel('directory/region')->loadByName($body['state'], 'BR');
 
             $address = Mage::getModel('customer/address');
 
