@@ -45,7 +45,7 @@ class Increazy_Checkout_AddressController extends Mage_Core_Controller_Front_Act
                 ['code' => 'SE', 'name' => 'Sergipe'],
                 ['code' => 'TO', 'name' => 'Tocantins'],
             ];
-            
+        
             foreach ($regionsData as $data) {
                 $region = Mage::getModel('directory/region');
                 $region->setData([
